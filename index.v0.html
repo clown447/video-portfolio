@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="商业剪辑作品集" />
+  <title>Commercial Editing Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --page: #0b0c0b;
+      --surface: #141613;
+      --surface-strong: #20241e;
+      --ink: #f5f7ef;
+      --muted: #aeb1a7;
+      --faint: #62675f;
+      --line: #30342e;
+      --accent: #c7fa68;
+      --accent-ink: #13170e;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.32);
+    }
+
+    [data-theme="light"] {
+      --page: #f4f5ee;
+      --surface: #e5e7df;
+      --surface-strong: #d9ddd1;
+      --ink: #151714;
+      --muted: #555b52;
+      --faint: #7b8176;
+      --line: #c8ccc2;
+      --accent: #5a8e06;
+      --accent-ink: #f4f5ee;
+      --white: #ffffff;
+      --shadow: rgba(30, 34, 25, 0.11);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input { font: inherit; }
+
+    button { cursor: pointer; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .site-header {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: 88px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      width: max-content;
+      font-family: "DM Mono", monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-link::before {
+      width: 0;
+      height: 0;
+      margin-right: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      content: "";
+      transition: width 180ms ease, height 180ms ease, margin-right 180ms ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible,
+    .nav-link[aria-current="page"] { color: var(--ink); }
+
+    .nav-link[aria-current="page"]::before {
+      width: 6px;
+      height: 6px;
+      margin-right: 8px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+
+    .availability {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .availability::before {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      content: "";
+    }
+
+    .icon-button {
+      display: inline-grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      padding: 0;
+      border: 1px solid transparent;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .icon-button:hover,
+    .icon-button:focus-visible { border-color: var(--line); }
+
+    .main-content { padding: 86px 0 0; }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+      gap: 64px;
+      align-items: end;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      width: 7px;
+      height: 7px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      content: "";
+    }
+
+    h1,
+    h2,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 780px;
+      margin-bottom: 0;
+      font-size: clamp(46px, 6.2vw, 94px);
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.03;
+      text-wrap: balance;
+    }
+
+    .intro-copy {
+      max-width: 365px;
+      margin: 0 0 7px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    .showreel {
+      position: relative;
+      display: block;
+      width: 100%;
+      min-height: 360px;
+      margin-top: 56px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #202a1a;
+      box-shadow: 0 26px 65px var(--shadow);
+    }
+
+    .showreel::before,
+    .project-visual::before {
+      position: absolute;
+      inset: 0;
+      background-color: var(--card-color, #445c2e);
+      content: "";
+    }
+
+    .showreel::after {
+      position: absolute;
+      top: 12%;
+      right: 10%;
+      width: 28%;
+      height: 76%;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(14, 16, 12, 0.7);
+      box-shadow: -150px 42px 0 rgba(247, 244, 215, 0.19), -305px -52px 0 rgba(255, 112, 80, 0.28);
+      content: "";
+      transform: rotate(8deg);
+    }
+
+    .showreel video,
+    .dialog-player video {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .reel-overlay {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      background: rgba(8, 10, 7, 0.08);
+      color: #fff;
+    }
+
+    .reel-topline,
+    .card-index {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: inherit;
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .reel-bottom {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .reel-title {
+      max-width: 590px;
+      margin: 0;
+      color: #fff;
+      font-size: clamp(26px, 3.2vw, 48px);
+      font-weight: 700;
+      line-height: 1.06;
+      text-wrap: balance;
+    }
+
+    .play-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 152px;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-size: 13px;
+      font-weight: 800;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .play-button:hover,
+    .play-button:focus-visible {
+      background: #e3ffad;
+      transform: translateY(-2px);
+    }
+
+    .work-controls {
+      display: grid;
+      grid-template-columns: minmax(200px, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      margin-top: 32px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .search-field {
+      display: flex;
+      align-items: center;
+      width: min(100%, 280px);
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: transparent;
+    }
+
+    .search-symbol {
+      width: 42px;
+      color: var(--faint);
+      font-size: 17px;
+      text-align: center;
+    }
+
+    .search-field input {
+      width: 100%;
+      min-width: 0;
+      padding: 11px 12px 11px 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .search-field:focus-within { border-color: var(--accent); }
+
+    .search-field input::placeholder { color: var(--faint); }
+
+    .filter-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .filter-button {
+      min-height: 40px;
+      padding: 0 15px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .filter-button:hover,
+    .filter-button:focus-visible { border-color: var(--line); }
+
+    .filter-button[aria-pressed="true"] {
+      background: var(--surface-strong);
+      color: var(--ink);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 68px 44px;
+      padding: 36px 0 124px;
+    }
+
+    .project-card {
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+    }
+
+    .project-card[hidden] { display: none; }
+
+    .project-visual {
+      position: relative;
+      min-height: 310px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.14);
+      transition: transform 220ms ease, border-color 220ms ease;
+    }
+
+    .project-card:hover .project-visual,
+    .project-card:focus-visible .project-visual {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
+
+    .project-visual::after {
+      position: absolute;
+      top: 16%;
+      left: 13%;
+      width: 54%;
+      height: 66%;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(8, 10, 8, 0.6);
+      box-shadow: 118px 42px 0 rgba(255, 255, 255, 0.16);
+      content: "";
+      transform: rotate(var(--tilt, 0deg));
+    }
+
+    .project-card:nth-child(2) .project-visual::after { left: 23%; transform: rotate(-8deg); }
+    .project-card:nth-child(3) .project-visual::after { top: 19%; width: 44%; transform: rotate(10deg); }
+    .project-card:nth-child(4) .project-visual::after { left: 27%; width: 42%; transform: rotate(-3deg); }
+    .project-card:nth-child(5) .project-visual::after { top: 12%; height: 76%; transform: rotate(4deg); }
+    .project-card:nth-child(6) .project-visual::after { left: 25%; width: 35%; transform: rotate(-11deg); }
+
+    .card-index {
+      position: absolute;
+      z-index: 1;
+      top: 18px;
+      right: 18px;
+      left: 18px;
+      color: #fff;
+    }
+
+    .project-play {
+      position: absolute;
+      z-index: 1;
+      right: 18px;
+      bottom: 18px;
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-radius: 50%;
+      background: rgba(8, 10, 8, 0.48);
+      color: #fff;
+      font-size: 16px;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .project-card:hover .project-play,
+    .project-card:focus-visible .project-play {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .project-meta {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: start;
+      padding-top: 16px;
+    }
+
+    .project-name {
+      margin: 0;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.25;
+      text-wrap: pretty;
+    }
+
+    .project-kind,
+    .project-year {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .project-year { margin-top: 2px; white-space: nowrap; }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 62px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .empty-state[hidden] { display: none; }
+
+    .contact-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+      gap: 42px;
+      align-items: end;
+      padding: 70px 0 38px;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-title {
+      max-width: 700px;
+      margin: 0;
+      font-size: clamp(34px, 4.1vw, 62px);
+      font-weight: 700;
+      line-height: 1.06;
+      text-wrap: balance;
+    }
+
+    .contact-side {
+      justify-self: end;
+      max-width: 365px;
+    }
+
+    .contact-copy {
+      margin: 0 0 21px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      border-radius: 4px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .contact-link:hover,
+    .contact-link:focus-visible {
+      background: var(--ink);
+      color: var(--page);
+    }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
+      border-top: 1px solid var(--line);
+      color: var(--faint);
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    dialog {
+      width: min(92vw, 1120px);
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--page);
+      color: var(--ink);
+      box-shadow: 0 32px 110px rgba(0, 0, 0, 0.58);
+    }
+
+    dialog::backdrop { background: rgba(0, 0, 0, 0.76); }
+
+    .dialog-inner { padding: 18px; }
+
+    .dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 18px;
+    }
+
+    .dialog-label {
+      margin: 0;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .dialog-player {
+      position: relative;
+      display: grid;
+      min-height: min(58vw, 590px);
+      overflow: hidden;
+      place-items: center;
+      border-radius: 4px;
+      background: var(--surface-strong);
+    }
+
+    .pending-media {
+      max-width: 330px;
+      padding: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .pending-media strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--ink);
+    }
+
+    @media (max-width: 760px) {
+      .shell { padding: 0 20px; }
+
+      .site-header {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        min-height: 104px;
+        padding: 16px 0;
+      }
+
+      .site-nav {
+        grid-row: 2;
+        grid-column: 1 / -1;
+        overflow-x: auto;
+      }
+
+      .nav-list { gap: 20px; }
+      .nav-link { min-height: 30px; }
+      .availability { display: none; }
+      .main-content { padding-top: 54px; }
+
+      .intro-grid,
+      .contact-section { grid-template-columns: 1fr; gap: 28px; }
+
+      .intro-copy { margin-bottom: 0; }
+      .showreel { min-height: 430px; margin-top: 40px; }
+      .showreel::after { right: 7%; width: 38%; }
+      .reel-overlay { padding: 16px; }
+      .reel-bottom { align-items: start; flex-direction: column; }
+      .play-button { width: 100%; }
+
+      .work-controls {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .search-field { width: 100%; }
+      .filter-list { justify-content: flex-start; }
+      .project-grid { grid-template-columns: 1fr; gap: 48px; padding-bottom: 82px; }
+      .project-visual { min-height: 300px; }
+      .contact-side { justify-self: start; }
+      .site-footer { align-items: flex-start; flex-direction: column; justify-content: center; padding: 16px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell site-header">
+    <a class="brand" href="#top" aria-label="返回顶部">剪辑作品集</a>
+    <nav class="site-nav" aria-label="主导航">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#top" aria-current="page">作品</a></li>
+        <li><a class="nav-link" href="#projects">项目</a></li>
+        <li><a class="nav-link" href="#contact">联系</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <span class="availability">开放商业合作</span>
+      <button class="icon-button" id="theme-toggle" type="button" title="切换明暗主题" aria-label="切换明暗主题">&#9790;</button>
+    </div>
+  </header>
+
+  <main class="shell main-content" id="top">
+    <section aria-labelledby="page-title">
+      <div class="intro-grid">
+        <div>
+          <p class="kicker">Selected work / 2026</p>
+          <h1 id="page-title">商业剪辑<br />作品集</h1>
+        </div>
+        <p class="intro-copy">混剪 Reel、品牌短片与社媒内容。用节奏、声音和画面，为项目建立可被记住的观看体验。</p>
+      </div>
+
+      <article class="showreel" aria-label="混剪 Reel 预览">
+        <video id="showreel-video" autoplay muted loop playsinline preload="metadata" data-media-role="showreel"></video>
+        <div class="reel-overlay">
+          <div class="reel-topline"><span>Showreel</span><span>Muted / Loop</span></div>
+          <div class="reel-bottom">
+            <p class="reel-title">混剪 Reel<br />视频素材待接入</p>
+            <button class="play-button" type="button" data-open-player="showreel">&#9654;&nbsp;&nbsp;观看混剪</button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" hidden>项目作品</h2>
+      <div class="work-controls">
+        <label class="search-field">
+          <span class="search-symbol" aria-hidden="true">&#9906;</span>
+          <input id="project-search" type="search" placeholder="搜索项目" autocomplete="off" />
+        </label>
+        <div class="filter-list" aria-label="项目类型筛选">
+          <button class="filter-button" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter-button" type="button" data-filter="brand" aria-pressed="false">品牌内容</button>
+          <button class="filter-button" type="button" data-filter="social" aria-pressed="false">社媒短片</button>
+          <button class="filter-button" type="button" data-filter="campaign" aria-pressed="false">活动传播</button>
+        </div>
+      </div>
+
+      <div class="project-grid" id="project-grid">
+        <button class="project-card" type="button" data-category="brand" data-title="项目 01" data-media-role="project-01">
+          <span class="project-visual" style="--card-color: #be4f3d; --tilt: -4deg;">
+            <span class="card-index"><span>01 / 06</span><span>Video</span></span>
+            <span class="project-play" aria-hidden="true">&#9654;</span>
+          </span>
+          <span class="project-meta"><span><span class="project-name">项目 01</span><span class="project-kind">品牌内容 / 待补充</span></span><span class="project-year">2026</span></span>
+        </button>
+
+        <button class="project-card" type="button" data-category="social" data-title="项目 02" data-media-role="project-02">
+          <span class="project-visual" style="--card-color: #4467a9; --tilt: 7deg;">
+            <span class="card-index"><span>02 / 06</span><span>Video</span></span>
+            <span class="project-play" aria-hidden="true">&#9654;</span>
+          </span>
+          <span class="project-meta"><span><span class="project-name">项目 02</span><span class="project-kind">社媒短片 / 待补充</span></span><span class="project-year">2026</span></span>
+        </button>
+
+        <button class="project-card" type="button" data-category="campaign" data-title="项目 03" data-media-role="project-03">
+          <span class="project-visual" style="--card-color: #9b7b24; --tilt: 8deg;">
+            <span class="card-index"><span>03 / 06</span><span>Video</span></span>
+            <span class="project-play" aria-hidden="true">&#9654;</span>
+          </span>
+          <span class="project-meta"><span><span class="project-name">项目 03</span><span class="project-kind">活动传播 / 待补充</span></span><span class="project-year">2025</span></span>
+        </button>
+
+        <button class="project-card" type="button" data-category="brand" data-title="项目 04" data-media-role="project-04">
+          <span class="project-visual" style="--card-color: #785285; --tilt: -3deg;">
+            <span class="card-index"><span>04 / 06</span><span>Video</span></span>
+            <span class="project-play" aria-hidden="true">&#9654;</span>
+          </span>
+          <span class="project-meta"><span><span class="project-name">项目 04</span><span class="project-kind">品牌内容 / 待补充</span></span><span class="project-year">2025</span></span>
+        </button>
+
+        <button class="project-card" type="button" data-category="social" data-title="项目 05" data-media-role="project-05">
+          <span class="project-visual" style="--card-color: #2e8475; --tilt: 4deg;">
+            <span class="card-index"><span>05 / 06</span><span>Video</span></span>
+            <span class="project-play" aria-hidden="true">&#9654;</span>
+          </span>
+          <span class="project-meta"><span><span class="project-name">项目 05</span><span class="project-kind">社媒短片 / 待补充</span></span><span class="project-year">2025</span></span>
+        </button>
+
+        <button class="project-card" type="button" data-category="campaign" data-title="项目 06" data-media-role="project-06">
+          <span class="project-visual" style="--card-color: #a9536f; --tilt: -9deg;">
+            <span class="card-index"><span>06 / 06</span><span>Video</span></span>
+            <span class="project-play" aria-hidden="true">&#9654;</span>
+          </span>
+          <span class="project-meta"><span><span class="project-name">项目 06</span><span class="project-kind">活动传播 / 待补充</span></span><span class="project-year">2024</span></span>
+        </button>
+
+        <p class="empty-state" id="empty-state" hidden>没有匹配项目。调整搜索词或筛选类型。</p>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div>
+        <p class="kicker">Available for work</p>
+        <h2 class="contact-title" id="contact-title">下一个项目，<br />一起剪得更有分量。</h2>
+      </div>
+      <div class="contact-side">
+        <p class="contact-copy">联系方式与社交链接将在确认个人信息后接入。当前按钮仅保留布局与交互位置。</p>
+        <a class="contact-link" href="#contact" aria-label="联系信息待接入">联系入口待接入</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell site-footer">
+    <span>Commercial editing portfolio</span>
+    <span>Skeleton v0 / 2026</span>
+  </footer>
+
+  <dialog id="player-dialog" aria-labelledby="player-dialog-title">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <p class="dialog-label" id="player-dialog-title">视频预览</p>
+        <button class="icon-button" id="close-player" type="button" title="关闭视频预览" aria-label="关闭视频预览">&#215;</button>
+      </div>
+      <div class="dialog-player">
+        <video id="dialog-video" controls playsinline></video>
+        <div class="pending-media" id="pending-media"><strong>视频素材待接入</strong>提供 MP4 后，此处自动接入完整播放。</div>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const themeToggle = document.querySelector("#theme-toggle");
+    const root = document.documentElement;
+    const filters = [...document.querySelectorAll("[data-filter]")];
+    const projectCards = [...document.querySelectorAll(".project-card")];
+    const searchInput = document.querySelector("#project-search");
+    const emptyState = document.querySelector("#empty-state");
+    const playerDialog = document.querySelector("#player-dialog");
+    const dialogVideo = document.querySelector("#dialog-video");
+    const pendingMedia = document.querySelector("#pending-media");
+    const dialogTitle = document.querySelector("#player-dialog-title");
+    let activeFilter = "all";
+
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+      root.dataset.theme = nextTheme;
+      themeToggle.innerHTML = nextTheme === "dark" ? "&#9790;" : "&#9788;";
+    });
+
+    const updateProjects = () => {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      projectCards.forEach((card) => {
+        const matchesFilter = activeFilter === "all" || card.dataset.category === activeFilter;
+        const matchesQuery = card.dataset.title.toLowerCase().includes(query);
+        const isVisible = matchesFilter && matchesQuery;
+        card.hidden = !isVisible;
+        visibleCount += isVisible ? 1 : 0;
+      });
+
+      emptyState.hidden = visibleCount !== 0;
+    };
+
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        activeFilter = filter.dataset.filter;
+        filters.forEach((button) => button.setAttribute("aria-pressed", String(button === filter)));
+        updateProjects();
+      });
+    });
+
+    searchInput.addEventListener("input", updateProjects);
+
+    const openPlayer = (title) => {
+      dialogTitle.textContent = title;
+      dialogVideo.removeAttribute("src");
+      dialogVideo.load();
+      pendingMedia.hidden = false;
+      playerDialog.showModal();
+    };
+
+    document.querySelector("[data-open-player='showreel']").addEventListener("click", () => openPlayer("混剪 Reel"));
+
+    projectCards.forEach((card) => {
+      card.addEventListener("click", () => openPlayer(card.dataset.title));
+    });
+
+    document.querySelector("#close-player").addEventListener("click", () => playerDialog.close());
+
+    playerDialog.addEventListener("close", () => {
+      dialogVideo.pause();
+      dialogVideo.removeAttribute("src");
+    });
+  </script>
+</body>
+</html>
